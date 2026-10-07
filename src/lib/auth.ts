@@ -20,9 +20,8 @@ const db = client.db("bangla-news-24");
 
 export const auth = betterAuth({
     baseURL: process.env.BETTER_AUTH_URL,
-  trustedOrigins: [
+trustedOrigins: [
     "https://project-news-channel-web.vercel.app",
-    "https://project-news-channel-5dpqwdqdn-ramim-x.vercel.app",
     "https://*.vercel.app",
 ],
     emailAndPassword: {
