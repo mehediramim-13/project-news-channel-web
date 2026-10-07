@@ -15,7 +15,7 @@ const Header = () => {
 
                 <div className="flex min-w-0 items-center gap-2 md:justify-center">
                     <Image
-                        src="/logo.webp"
+                        src="/icon.png"
                         alt="Logo"
                         width={50}
                         height={50}
