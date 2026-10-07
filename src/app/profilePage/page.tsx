@@ -10,10 +10,6 @@ const Profile = () => {
     const { data: session } = authClient.useSession();
     const user = session?.user;
 
-    if (!user){
-        redirect ('signin');
-    }
-
     const [show, setShow] = useState(false);
 
     const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,29 +39,31 @@ const Profile = () => {
     };
 
     return (
-        <div className="flex min-h-[80vh] items-center justify-center px-4 py-10">
+        <div className="flex min-h-[80vh] items-center justify-center px-4 py-6 sm:py-10">
             <div className="w-full max-w-md overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
-                <div className="h-28 bg-gradient-to-r from-[#c00000] to-[#7a0000]" />
+                <div className="h-24 bg-gradient-to-r from-[#c00000] to-[#7a0000] sm:h-28" />
 
-                <div className="flex flex-col items-center px-6 pb-8 text-center">
-                    <div className="-mt-14 mb-4">
+                <div className="flex flex-col items-center px-4 pb-6 text-center sm:px-6 sm:pb-8">
+                    <div className="-mt-12 mb-4 sm:-mt-14">
                         {user?.image ? (
-                            <Image
-                                src={user.image}
-                                alt={user.name ?? "User"}
-                                width={112}
-                                height={112}
-                                className="h-28 w-28 rounded-full border-4 border-white object-cover shadow-md"
-                            />
+                            <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border-4 border-white shadow-md sm:h-28 sm:w-28">
+                                <Image
+                                    src={user.image}
+                                    alt={user.name ?? "User"}
+                                    fill
+                                    sizes="112px"
+                                    className="object-cover"
+                                />
+                            </div>
                         ) : (
-                            <div className="flex h-28 w-28 items-center justify-center rounded-full border-4 border-white bg-[#c00000] text-4xl font-bold text-white shadow-md">
+                            <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-white bg-[#c00000] text-3xl font-bold text-white shadow-md sm:h-28 sm:w-28 sm:text-4xl">
                                 {user?.name?.[0]?.toUpperCase()}
                             </div>
                         )}
                     </div>
 
-                    <h1 className="text-2xl font-bold text-gray-900">{user?.name}</h1>
-                    <p className="mt-1 text-sm text-gray-500">{user?.email}</p>
+                    <h1 className="max-w-full break-words text-xl font-bold text-gray-900 sm:text-2xl">{user?.name}</h1>
+                    <p className="mt-1 max-w-full break-all text-sm text-gray-500">{user?.email}</p>
 
                     <button
                         onClick={handleShowForm}

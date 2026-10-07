@@ -28,19 +28,23 @@ const Marquee = async() => {
 
     return (
         <div className='bg-red-700 text-white'>
-            <div className='flex container mx-auto'>
-                <div className='bg-red-800 py-1 px-5 font-bold'>সর্বশেষ</div>
-            <MarqueeText className='py-1' direction='right' duration={10}>
-            {
-                headlines.map (h=><span key={h.id}>
+            <div className='container mx-auto flex items-stretch'>
+                <div className='flex shrink-0 items-center bg-red-800 px-3 py-1 text-sm font-bold sm:px-5 sm:text-base'>
+                    সর্বশেষ
+                </div>
+                <div className='min-w-0 flex-1 overflow-hidden text-sm sm:text-base'>
+                    <MarqueeText className='py-1' direction='right' duration={10}>
+                    {
+                        headlines.map (h=><span key={h.id}>
 
-                    <Link href={`/news/${h.id}`} className='hover:underline underline-offset-4'>
-                        {h.title}
-                    </Link>
-                    <span className='mx-5'>•</span>
-                </span>)
-            }
-            </MarqueeText>
+                            <Link href={`/news/${h.id}`} className='hover:underline underline-offset-4'>
+                                {h.title}
+                            </Link>
+                            <span className='mx-3 sm:mx-5'>•</span>
+                        </span>)
+                    }
+                    </MarqueeText>
+                </div>
             </div>
         </div>
     );

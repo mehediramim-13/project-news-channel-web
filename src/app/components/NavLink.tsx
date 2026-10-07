@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import React from 'react';
+import NavMenu from './NavMenu';
 
 interface Navs {
     id: string;
@@ -29,17 +29,9 @@ const NavLink = async () => {
         .filter(n => n.scrapable)
         .filter((n, i, arr) => arr.findIndex(x => x.slug === n.slug) === i);
 
-    return (
-        <nav className="flex gap-5 justify-center my-10">
-            <Link href='/'>হোম</Link>
+    const items = filteredNavs.map(n => ({ slug: n.slug, title: n.title }));
 
-            {filteredNavs.map((n, i) => (
-                <Link key={`${n.slug}-${i}`} href={`/category/${n.slug}`}>
-                    {n.title}
-                </Link>
-            ))}
-        </nav>
-    );
+    return <NavMenu items={items} />;
 };
 
 export default NavLink;

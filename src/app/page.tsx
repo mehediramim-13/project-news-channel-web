@@ -1,5 +1,4 @@
 import MainNews from "./components/MainNews";
-import Marquee from "./components/Marquee";
 import MostRead from "./components/MostRead";
 import NewsCard from "./components/NewsCard";
 
@@ -37,7 +36,6 @@ export default async function Home() {
   if (sections.length === 0) {
     return (
       <div>
-        
         <p className="p-10 text-center">খবর লোড করা যাচ্ছে না, একটু পরে চেষ্টা করুন।</p>
       </div>
     );
@@ -50,19 +48,16 @@ export default async function Home() {
 
   return (
     <div>
-      
-
-      <div className="grid grid-cols-3 gap-5 container mx-auto my-10">
-        {/* News Section */}
-        <div className="col-span-2">
+      <div className="container mx-auto my-6 grid grid-cols-1 gap-5 sm:my-10 lg:grid-cols-3">
+        <div className="min-w-0 lg:col-span-2">
           <MainNews news={mainNews}></MainNews>
 
           <div className="grid gap-1">
             {
               othersSection.map(os => <div className="" key={os.curationId}>
-                <h1 className="font-bold text-xl border-b-2 border-red-700 p-1 mt-10 mr-5">{os.title}</h1>
+                <h1 className="mt-8 border-b-2 border-red-700 p-1 text-lg font-bold sm:mt-10 sm:text-xl lg:mr-5">{os.title}</h1>
 
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
                   {
                     os.articles.map(news => <NewsCard key={news.id} news={news}></NewsCard>)
                   }
@@ -71,11 +66,10 @@ export default async function Home() {
             }
           </div>
         </div>
-        {/* Most Read Section */}
-        <div className="col-span-1">
+
+        <div className="min-w-0 lg:col-span-1">
            <MostRead></MostRead>
         </div>
-           
       </div>
     </div>
   );

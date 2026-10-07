@@ -6,12 +6,9 @@ import Marquee from "./components/Marquee";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
 
-
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
 });
-
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,14 +22,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="light"
       className={`${notoSerifBengali.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <Header></Header>
-        <Marquee></Marquee>
-        <Toaster/>
-        <main className="container mx-auto">{children}</main>
-        <Footer></Footer>
-        
-        </body>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body className="flex min-h-full flex-col">
+        <Header />
+        <Marquee />
+        <Toaster />
+        <main className="container mx-auto w-full flex-1 px-4 sm:px-6">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

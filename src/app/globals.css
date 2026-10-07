@@ -4,3 +4,6 @@
 body {
   background-color: #fafafa;
 }
+html, body {
+  overflow-x: clip;
+}

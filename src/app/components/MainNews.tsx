@@ -16,7 +16,7 @@ const MainNews = ({ news }: { news: News[] }) => {
     const otherNews = news.slice(1, 5);
 
     return (
-        <div className="grid grid-cols-1 gap-4 pr-5 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-5 lg:pr-5">
             <Link
                 href={`/news/${firstNews.id}`}
                 className="group block rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c00000] lg:col-span-3"
@@ -32,28 +32,28 @@ const MainNews = ({ news }: { news: News[] }) => {
                             className="object-cover transition duration-500 group-hover:scale-105"
                         />
                     </figure>
-                    <div className="card-body gap-2 p-5">
+                    <div className="card-body gap-2 p-4 sm:p-5">
                         <p className="text-xs font-semibold text-[#c00000]">{firstNews.category}</p>
-                        <h2 className="text-2xl font-bold leading-snug text-gray-900 transition-colors group-hover:text-[#c00000]">
+                        <h2 className="text-xl font-bold leading-snug text-gray-900 transition-colors group-hover:text-[#c00000] sm:text-2xl">
                             {firstNews.title}
                         </h2>
-                        <p className="line-clamp-3 text-base text-gray-600">{firstNews.description}</p>
-                        <span className="mt-1 text-sm font-semibold text-[#c00000] opacity-0 transition duration-300 group-hover:opacity-100">
+                        <p className="line-clamp-3 text-sm text-gray-600 sm:text-base">{firstNews.description}</p>
+                        <span className="mt-1 text-sm font-semibold text-[#c00000] transition duration-300 lg:opacity-0 lg:group-hover:opacity-100">
                             বিস্তারিত পড়ুন →
                         </span>
                     </div>
                 </div>
             </Link>
 
-            <div className="grid grid-cols-1 grid-rows-4 divide-y divide-gray-200 overflow-hidden rounded-xl border border-gray-300 bg-base-100 lg:col-span-2">
+            <div className="grid grid-cols-1 divide-y divide-gray-200 overflow-hidden rounded-xl border border-gray-300 bg-base-100 sm:grid-cols-2 sm:divide-y-0 lg:col-span-2 lg:grid-cols-1 lg:grid-rows-4 lg:divide-y">
                 {otherNews.map(on => (
                     <Link
                         key={on.id}
                         href={`/news/${on.id}`}
-                        className="group flex flex-col justify-center px-4 py-3 transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#c00000]"
+                        className="group flex flex-col justify-center border-gray-200 px-4 py-3 transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#c00000] sm:border-b sm:odd:border-r lg:border-b-0 lg:odd:border-r-0"
                     >
                         <p className="text-xs font-semibold text-[#c00000]">{on.category}</p>
-                        <h3 className="mt-1 line-clamp-2 text-base font-semibold leading-snug text-gray-900 transition-colors group-hover:text-[#c00000]">
+                        <h3 className="mt-1 line-clamp-2 text-sm font-semibold leading-snug text-gray-900 transition-colors group-hover:text-[#c00000] sm:text-base">
                             {on.title}
                         </h3>
                     </Link>

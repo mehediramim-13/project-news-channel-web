@@ -9,20 +9,28 @@ const Header = () => {
     });
 
     return (
-        <header>
-            <div className="container mx-auto grid grid-cols-3 items-center py-3">
-                <div />
+        <header className="contents">
+            <div className="container mx-auto flex items-center justify-between gap-2 px-4 py-3 md:grid md:grid-cols-3 md:px-6">
+                <div className="hidden md:block" />
 
-                <div className="flex items-center justify-center gap-2">
-                    <Image src="/logo.webp" alt="Logo" width={50} height={50} className="rounded-xl" />
-                    <div className="leading-tight">
-                        <h2 className="text-2xl font-bold text-[#c00000]">Bangla News 24</h2>
-                        <p className="text-[13px] text-gray-600">{date}</p>
+                <div className="flex min-w-0 items-center gap-2 md:justify-center">
+                    <Image
+                        src="/logo.webp"
+                        alt="Logo"
+                        width={50}
+                        height={50}
+                        className="h-9 w-9 shrink-0 rounded-xl sm:h-[50px] sm:w-[50px]"
+                    />
+                    <div className="min-w-0 leading-tight">
+                        <h2 className="truncate text-lg font-bold text-[#c00000] sm:text-2xl">
+                            Bangla News 24
+                        </h2>
+                        <p className="hidden text-[13px] text-gray-600 sm:block">{date}</p>
                     </div>
                 </div>
 
                 <UserInfo />
-            </div> 
+            </div>
 
             <NavLink />
         </header>

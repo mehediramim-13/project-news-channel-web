@@ -60,8 +60,8 @@ const NewsDetails = async ({ params }: Props) => {
         .filter((b) => !(b.type === 'text' && b.text.includes('ফলো করতে')));
 
     return (
-        <article className="container mx-auto max-w-3xl px-4 py-10">
-            <nav className="flex items-center gap-2 text-sm text-gray-500">
+        <article className="container mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-10">
+            <nav className="flex flex-wrap items-center gap-2 text-xs text-gray-500 sm:text-sm">
                 <Link href="/" className="hover:text-[#c00000]">হোম</Link>
                 {news.topics[0] && (
                     <>
@@ -71,20 +71,20 @@ const NewsDetails = async ({ params }: Props) => {
                 )}
             </nav>
 
-            <h1 className="mt-4 text-3xl font-bold leading-snug text-gray-900 md:text-4xl md:leading-snug">
+            <h1 className="mt-3 text-2xl font-bold leading-snug text-gray-900 sm:mt-4 sm:text-3xl md:text-4xl md:leading-snug">
                 {news.title}
             </h1>
 
-            <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 border-y border-gray-200 py-3 text-sm text-gray-600">
+            <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 border-y border-gray-200 py-3 text-xs text-gray-600 sm:text-sm">
                 <span>{date}, {time}</span>
-                <span className="text-gray-300">|</span>
+                <span className="hidden text-gray-300 sm:inline">|</span>
                 <span>পড়তে সময় লাগবে প্রায় {readMinutes} মিনিট</span>
-                <span className="text-gray-300">|</span>
+                <span className="hidden text-gray-300 sm:inline">|</span>
                 <span className="font-semibold text-gray-800">{news.source}</span>
             </div>
 
-            <figure className="mt-6">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl">
+            <figure className="mt-5 sm:mt-6">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg sm:rounded-xl">
                     <Image
                         src={news.imageUrl}
                         alt={heroInfo?.altText ?? news.title}
@@ -95,18 +95,18 @@ const NewsDetails = async ({ params }: Props) => {
                     />
                 </div>
                 {heroInfo?.caption && (
-                    <figcaption className="mt-2 text-sm text-gray-500">
+                    <figcaption className="mt-2 text-xs text-gray-500 sm:text-sm">
                         {heroInfo.caption}
                         {heroInfo.copyrightHolder && ` • ${heroInfo.copyrightHolder}`}
                     </figcaption>
                 )}
             </figure>
 
-            <div className="mt-8 space-y-6">
+            <div className="mt-6 space-y-5 sm:mt-8 sm:space-y-6">
                 {bodyBlocks.map((block, i) => {
                     if (block.type === 'subheading') {
                         return (
-                            <h2 key={i} className="border-l-4 border-[#c00000] pl-3 pt-2 text-2xl font-bold text-gray-900">
+                            <h2 key={i} className="border-l-4 border-[#c00000] pl-3 pt-2 text-xl font-bold text-gray-900 sm:text-2xl">
                                 {block.text}
                             </h2>
                         );
@@ -121,10 +121,10 @@ const NewsDetails = async ({ params }: Props) => {
                                     width={block.width}
                                     height={block.height}
                                     sizes="(min-width: 768px) 768px, 100vw"
-                                    className="h-auto w-full rounded-xl"
+                                    className="h-auto w-full rounded-lg sm:rounded-xl"
                                 />
                                 {block.caption && (
-                                    <figcaption className="mt-2 text-sm text-gray-500">
+                                    <figcaption className="mt-2 text-xs text-gray-500 sm:text-sm">
                                         {block.caption}
                                         {block.copyrightHolder && ` • ${block.copyrightHolder}`}
                                     </figcaption>
@@ -134,7 +134,7 @@ const NewsDetails = async ({ params }: Props) => {
                     }
 
                     return (
-                        <p key={i} className="whitespace-pre-line text-lg leading-8 text-gray-800">
+                        <p key={i} className="whitespace-pre-line break-words text-base leading-7 text-gray-800 sm:text-lg sm:leading-8">
                             {block.text}
                         </p>
                     );
@@ -142,16 +142,16 @@ const NewsDetails = async ({ params }: Props) => {
             </div>
 
             {news.tags.length > 0 && (
-                <div className="mt-10 flex flex-wrap gap-2 border-t border-gray-200 pt-6">
+                <div className="mt-8 flex flex-wrap gap-2 border-t border-gray-200 pt-5 sm:mt-10 sm:pt-6">
                     {news.tags.map((tag) => (
-                        <span key={tag} className="rounded-full border border-gray-300 px-3 py-1 text-sm text-gray-700">
+                        <span key={tag} className="rounded-full border border-gray-300 px-3 py-1 text-xs text-gray-700 sm:text-sm">
                             {tag}
                         </span>
                     ))}
                 </div>
             )}
 
-            <div className="mt-6 flex items-center justify-between text-sm">
+            <div className="mt-6 flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
                 <Link href="/" className="font-semibold text-[#c00000] hover:underline">
                     ← আরও খবর
                 </Link>
