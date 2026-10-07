@@ -2,35 +2,52 @@
 
 import { authClient } from '@/lib/auth-client';
 import Image from "next/image";
+import { redirect } from 'next/navigation';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Profile = () => {
     const { data: session } = authClient.useSession();
     const user = session?.user;
+
+    if (!user){
+        redirect ('signin');
+    }
+
     const [show, setShow] = useState(false);
 
     const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const updateUser = Object.fromEntries(formData.entries());
+        const updateUser = Object.fromEntries(formData.entries()) as { name: string; image: string };
 
-        await authClient.updateUser({
-            ...updateUser
-        })
-    }
+        if (updateUser.name === user?.name && updateUser.image === (user?.image ?? "")) {
+            toast.error("আগের তথ্যই আছে, কিছু পরিবর্তন করুন");
+            return;
+        }
+
+        const { error } = await authClient.updateUser({
+            ...updateUser,
+        });
+
+        if (error) {
+            toast.error(error.message || "প্রোফাইল আপডেট হয়নি");
+        } else {
+            toast.success("প্রোফাইল সফলভাবে আপডেট হয়েছে");
+            setShow(false);
+        }
+    };
 
     const handleShowForm = () => {
         setShow(!show);
-    }
+    };
 
     return (
         <div className="flex min-h-[80vh] items-center justify-center px-4 py-10">
             <div className="w-full max-w-md overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
-                {/* Top banner */}
                 <div className="h-28 bg-gradient-to-r from-[#c00000] to-[#7a0000]" />
 
                 <div className="flex flex-col items-center px-6 pb-8 text-center">
-                    {/* Avatar */}
                     <div className="-mt-14 mb-4">
                         {user?.image ? (
                             <Image
